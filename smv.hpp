@@ -32,6 +32,7 @@ void fillText() {}
 }
 
 struct Engine {
+  Engine(std::unordered_map<std::string, Scene*> scenes = {}) : scenes(scenes) {}
   sf::Clock gameClock;
 
   int width, height;
@@ -44,7 +45,7 @@ struct Engine {
   sf::RenderWindow window;
   EventHandler handler { .window = window };
   
-  void init() {
+  virtual void init() {
     dt = 1 / FPS;
     window.create(sf::VideoMode(width, height), "hello");
 
@@ -54,7 +55,7 @@ struct Engine {
     scenes[currentScene]->init();
   }
 
-  void start() {
+  virtual void start() {
     while(window.isOpen()) {
       dt = gameClock.restart().asSeconds();
       handler.run();
