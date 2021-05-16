@@ -38,6 +38,8 @@ int main () {
         }
       }
   });
+  game.init();
+  game.start();
   return 0;
 }
 ```
